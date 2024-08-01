@@ -1,18 +1,25 @@
-let nav_items = document.querySelectorAll('.nav-items');
-let tab_items = document.querySelectorAll('.tab-item');
-let myInfo_content = document.querySelectorAll(".myInfo-content");
+let btn1 = document.querySelector("#btn1");
+let btn2 = document.querySelector("#btn2");
+let btn3 = document.querySelector("#btn3");
+let btn4 = document.querySelector("#btn4");
 
+let arrow1 = document.querySelector("#arrow1");
+let arrow2 = document.querySelector("#arrow2");
+let arrow3 = document.querySelector("#arrow3");
+let arrow4 = document.querySelector("#arrow4");
 
-
-nav_items.forEach(nav_item => {
-    nav_item.addEventListener("click", function() {
-        for (let x = 0; x < nav_items.length; x++) {
-            nav_items[x].classList.remove('active');
-        }
-        nav_item.classList.add("active");
-    });
-});
-
+arrow1.addEventListener('click', function(){
+    btn1.click();
+})
+arrow2.addEventListener('click', function(){
+    btn2.click();
+})
+arrow3.addEventListener('click', function(){
+    btn3.click();
+})
+arrow4.addEventListener('click', function(){
+    btn4.click();
+})
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -24,114 +31,3 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-
-window.onscroll = () => {
-    const sections = document.querySelectorAll('.my-divs');
-    const navLinks = document.querySelectorAll('nav a');
-
-    sections.forEach(sec => {
-        let top = window.scrollY;
-        let offset = sec.offsetTop - 150;
-        let height = sec.offsetHeight;
-        let id = sec.getAttribute('id');
-
-        if (top >= offset && top < offset + height) {
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                document.querySelector("nav a[href*='" + id + "']").classList.add('active');
-            });
-        }
-    });
-};
-
-
-
-
-
-// myInfo tab 
-for (let x = 0; x < tab_items.length; x++) {
-    tab_items[x].addEventListener('click',function(){
-        for (let i = 0; i < tab_items.length; i++){
-            tab_items[i].classList.remove('active');
-        }
-        tab_items[x].classList.add('active');
-       
-        for (let i = 0; i < myInfo_content.length; i++){
-            myInfo_content[i].classList.add('invisible');
-        }
-        myInfo_content[x].classList.remove('invisible');
-    })
-}
-
-
-
-//practice
-let slideIndex = 1;
-showSlides(slideIndex);
-
-
-// Next/previous controls
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-
-
-// Thumbnail image controls
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-
-function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  let dots = document.getElementsByClassName("dot");
-
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
-
-}
-
-let prev = document.querySelector(".prev");
-let next = document.querySelector('.next');
-let project_contents = document.querySelectorAll('.project-content');
-let projectIndex = 0;
-
-//setting
-
-
-
-next.addEventListener('click', function(){
-    
-    projectIndex++;
-    projectIndex = projectIndex % 3 
-    
-    for (let x = 0; x < project_contents.length; x++) {
-        project_contents[x].classList.add("invisible");
-    }
-    project_contents[projectIndex].classList.remove("invisible");
-    
-})
-
-prev.addEventListener('click', function(){
-    
-    projectIndex--;
-    if (projectIndex < 0) {
-        projectIndex = 2;
-    }
-    for (let x = 0; x < project_contents.length; x++) {
-        project_contents[x].classList.add("invisible");
-    }
-    project_contents[projectIndex].classList.remove("invisible");
-    
-    
-})
